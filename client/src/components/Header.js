@@ -16,10 +16,15 @@ class Header extends Component {
 			default:
 				return [
 					<li key="campaigns">
-						<Link to="/campaigns">My Campaigns</Link>
+						<Link to="/campaigns">Campaigns</Link>
+					</li>,
+					<li key="players">
+						<Link to="/players">Players</Link>
 					</li>,
 					<li key="head2">
-						<a href="/api/logout">Logout</a>
+						<a href="/api/logout" className="btn-small">
+							Logout
+						</a>
 					</li>,
 				];
 		}
@@ -34,8 +39,7 @@ class Header extends Component {
 					<Link
 						to={this.props.auth ? "/dashboard" : "/"}
 						href="/"
-						className="left brand-logo"
-					>
+						className="left brand-logo">
 						{this.props.auth
 							? `${userName}'s DM Helper`
 							: `DM Helper`}

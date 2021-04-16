@@ -8,6 +8,8 @@ import Landing from "./Landing";
 import Dashboard from "./Dashboard";
 import CampaignsList from "./Campaigns/CampaignsList";
 import CampaignsNew from "./Campaigns/CampaignsNew";
+import PlayersList from "./Players/PlayersList";
+import PlayersNew from "./Players/PlayersNew";
 
 class App extends Component {
 	componentDidMount() {
@@ -31,6 +33,12 @@ class App extends Component {
 							exact
 							path="/campaigns/new"
 							component={CampaignsNew}
+						/>
+						<Route exact path="/players" component={PlayersList} />
+						<Route
+							exact
+							path="/players/new"
+							component={PlayersNew}
 						/>
 					</div>
 				</BrowserRouter>

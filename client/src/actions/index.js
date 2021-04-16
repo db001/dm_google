@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_USER, GET_CAMPAIGNS } from "./types";
+import { FETCH_USER, GET_CAMPAIGNS, GET_PLAYERS } from "./types";
 
 export const fetchUser = () => async (dispatch) => {
 	const res = await axios.get("/api/current_user");
@@ -14,4 +14,9 @@ export const handleToken = (token) => async (dispatch) => {
 export const fetchCampaigns = () => async (dispatch) => {
 	const res = await axios.get("/api/campaigns");
 	dispatch({ type: GET_CAMPAIGNS, payload: res.data });
+};
+
+export const fetchPlayers = () => async (dispatch) => {
+	const res = await axios.get("/api/players");
+	dispatch({ type: GET_PLAYERS, payload: res.data });
 };

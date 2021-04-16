@@ -18,11 +18,14 @@ CREATE TABLE campaigns(
 
 CREATE TABLE player_characters(
   character_id UUID DEFAULT uuid_generate_v4(),
+  character_name VARCHAR(255),
   dnd_beyond_ref INT,
   player_initiative INT NOT NULL,
   player_dex INT NOT NULL,
   player_armour_class INT NOT NULL,
   player_hit_points INT NOT NULL,
+  dm_id UUID,
+  FOREIGN KEY (dm_id) REFERENCES dungeon_master(dm_id),
   PRIMARY KEY (character_id)
 );
 
