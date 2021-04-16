@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import * as actions from "../../actions";
 import axios from "axios";
 
-export class CampaignsNew extends Component {
+class CampaignsNew extends Component {
 	constructor(props) {
 		super(props);
 
@@ -18,13 +20,17 @@ export class CampaignsNew extends Component {
 
 	onSubmitForm = async (e) => {
 		e.preventDefault();
+		const data = {
+			name: this.state.name,
+		};
 		try {
 			const response = await axios({
 				method: "POST",
 				url: "/api/campaigns/add",
-				body: {
-					name: this.state.name,
+				headers: {
+					"Content-type": "application/json",
 				},
+				data,
 			});
 			const parseResponse = response;
 
@@ -55,4 +61,8 @@ export class CampaignsNew extends Component {
 	}
 }
 
-export default CampaignsNew;
+function mapStateToProps({ auth }) {
+	return { auth };
+}
+
+export default connect(mapStateToProps, actions)(CampaignsNew);
