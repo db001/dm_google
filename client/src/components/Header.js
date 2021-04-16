@@ -15,6 +15,9 @@ class Header extends Component {
 				);
 			default:
 				return [
+					<li key="campaigns">
+						<Link to="/campaigns">My Campaigns</Link>
+					</li>,
 					<li key="head2">
 						<a href="/api/logout">Logout</a>
 					</li>,

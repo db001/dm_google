@@ -8,14 +8,14 @@ module.exports = (app) => {
 				"SELECT * FROM campaigns WHERE dm_id = $1",
 				[req.user.dm_id]
 			);
-			// console.log(data.rows[0]);
 			res.send(data.rows[0]);
 		} catch (error) {
 			console.error(error);
+			res.send();
 		}
 	});
 
-	app.get("/api/campaigns/", async (req, res) => {
+	app.get("/api/campaigns/", requireLogin, async (req, res) => {
 		try {
 			const campaigns = await pool.query(
 				"SELECT * FROM campaigns WHERE dm_id = $1",
@@ -23,7 +23,7 @@ module.exports = (app) => {
 			);
 
 			if (campaigns.rows.length == 0) {
-				return res.status(401).json("No campaigns");
+				return res.send(null);
 			}
 
 			res.send(campaigns.rows);
@@ -34,7 +34,7 @@ module.exports = (app) => {
 		}
 	});
 
-	app.post("/api/campaigns/add", async (req, res) => {
+	app.post("/api/campaigns/add", requireLogin, async (req, res) => {
 		try {
 			const campaign = await pool.query(
 				"SELECT * FROM campaigns WHERE dm_id = $1 AND campaign_name = $2",
@@ -49,12 +49,34 @@ module.exports = (app) => {
 				"INSERT INTO campaigns (dm_id, campaign_name) VALUES ($1, $2) RETURNING *",
 				[req.user.dm_id, req.body.name]
 			);
-			console.log(newCampaign.rows[0]);
+
 			res.send(newCampaign.rows[0]);
 		} catch (error) {
 			console.error("Error in add campaign");
 			console.error(error);
 			res.send(error.message);
+		}
+	});
+
+	app.delete("/api/campaigns/delete/:id", requireLogin, async (req, res) => {
+		console.log(req.params.id);
+		console.log(req.user);
+		try {
+			const deleteCampaign = await pool.query(
+				"DELETE FROM campaigns WHERE dm_id = $1 AND campaign_id = $2",
+				[req.user.dm_id, req.params.id]
+			);
+
+			console.log(deleteCampaign.rows[0]);
+
+			// if (deleteCampaign.rows.length === 0) {
+			// 	return res.json("This campaign is not yours");
+			// }
+
+			res.json("Campaign deleted");
+		} catch (err) {
+			console.error(err.message);
+			res.send(err.message);
 		}
 	});
 };

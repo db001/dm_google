@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 import axios from "axios";
+import { Redirect } from "react-router";
 
 class CampaignsNew extends Component {
 	constructor(props) {
@@ -15,6 +16,7 @@ class CampaignsNew extends Component {
 	updateName = (value) => {
 		this.setState({
 			name: value,
+			redirect: false,
 		});
 	};
 
@@ -32,16 +34,23 @@ class CampaignsNew extends Component {
 				},
 				data,
 			});
-			const parseResponse = response;
 
-			console.log("ParseResponse");
-			console.log(parseResponse.data);
+			if (response) {
+				this.setState({
+					redirect: true,
+				});
+			}
 		} catch (err) {
 			console.error(err.message);
 		}
 	};
 
 	render() {
+		const { redirect } = this.state;
+
+		if (redirect) {
+			return <Redirect to="/campaigns" />;
+		}
 		return (
 			<Fragment>
 				<div className="form">

@@ -1,4 +1,4 @@
-import { FETCH_USER, GET_DATA } from "../actions/types";
+import { FETCH_USER, GET_CAMPAIGNS } from "../actions/types";
 
 export const authReducer = (state = null, action) => {
 	switch (action.type) {
@@ -11,9 +11,9 @@ export const authReducer = (state = null, action) => {
 	}
 };
 
-export const dataReducer = (state = null, action) => {
+export const campaignReducer = (state = null, action) => {
 	switch (action.type) {
-		case GET_DATA:
+		case GET_CAMPAIGNS:
 			return isEmpty(action.payload) ? false : action.payload;
 
 		default:

@@ -28,7 +28,6 @@ passport.use(
 			callbackURL: "/auth/google/callback",
 		},
 		async (accessToken, refreshToken, profile, done) => {
-			// console.log(profile.displayName);
 			try {
 				const user = await pool.query(
 					"SELECT * FROM dungeon_master WHERE google_id = $1",
