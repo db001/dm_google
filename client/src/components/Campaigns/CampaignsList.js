@@ -11,34 +11,22 @@ class Campaigns extends Component {
 		this.props.fetchCampaigns();
 	}
 
-	// getCampaigns = async () => {
-	// 	try {
-	// 		const response = await axios.get("/api/campaigns/");
-
-	// 		this.setState({
-	// 			campaigns: response.data,
-	// 		});
-	// 	} catch (err) {
-	// 		console.error(err.message);
-	// 	}
-	// };
-
 	deleteCampaign = async (id) => {
 		try {
 			const response = await axios.delete(`/api/campaigns/delete/${id}`);
-			console.log(response);
+			console.log(response.data);
+			this.props.fetchCampaigns();
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
 	renderCampaigns = () => {
-		console.log(this.props);
-		return <p>argh</p>;
-		if (this.props.campaigns.length === 0) {
+		if (!this.props.campaigns) {
 			return (
 				<li key="noCampaigns">
-					You haven't created any campaigns, click the link above
+					You haven't created any campaigns, start by clicking the
+					link above
 				</li>
 			);
 		}

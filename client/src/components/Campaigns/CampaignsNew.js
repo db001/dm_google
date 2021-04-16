@@ -53,17 +53,23 @@ class CampaignsNew extends Component {
 		}
 		return (
 			<Fragment>
-				<div className="form">
-					<h1>Add Campaign</h1>
-					<form onSubmit={this.onSubmitForm}>
-						<input
-							type="text"
-							placeholder="Campaign Name"
-							value={this.state.name}
-							onChange={(e) => this.updateName(e.target.value)}
-						/>
-						<button type="submit">Add</button>
-					</form>
+				<div className="row">
+					<div className="col">
+						<div className="form">
+							<h1>Add Campaign</h1>
+							<form onSubmit={this.onSubmitForm}>
+								<input
+									type="text"
+									placeholder="Campaign Name"
+									value={this.state.name}
+									onChange={(e) =>
+										this.updateName(e.target.value)
+									}
+								/>
+								<button type="submit">Add</button>
+							</form>
+						</div>
+					</div>
 				</div>
 			</Fragment>
 		);

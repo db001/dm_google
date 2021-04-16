@@ -6,7 +6,7 @@ import * as actions from "../actions";
 import Header from "./Header";
 import Landing from "./Landing";
 import Dashboard from "./Dashboard";
-import Campaigns from "./Campaigns/Campaigns";
+import CampaignsList from "./Campaigns/CampaignsList";
 import CampaignsNew from "./Campaigns/CampaignsNew";
 
 class App extends Component {
@@ -22,7 +22,11 @@ class App extends Component {
 						<Header />
 						<Route exact path="/" component={Landing} />
 						<Route exact path="/dashboard" component={Dashboard} />
-						<Route exact path="/campaigns" component={Campaigns} />
+						<Route
+							exact
+							path="/campaigns"
+							component={CampaignsList}
+						/>
 						<Route
 							exact
 							path="/campaigns/new"

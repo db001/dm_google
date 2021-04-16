@@ -1,9 +1,8 @@
-import { FETCH_USER } from "../actions/types";
+import { GET_CAMPAIGNS } from "../actions/types";
 
-const authReducer = (state = null, action) => {
+const campaignReducer = (state = null, action) => {
 	switch (action.type) {
-		case FETCH_USER:
-			// return action.payload || false;
+		case GET_CAMPAIGNS:
 			return isEmpty(action.payload) ? false : action.payload;
 
 		default:
@@ -11,7 +10,7 @@ const authReducer = (state = null, action) => {
 	}
 };
 
-export default authReducer;
+export default campaignReducer;
 
 function isEmpty(obj) {
 	for (let key in obj) {

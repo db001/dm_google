@@ -23,9 +23,11 @@ class Dashboard extends Component {
 
 	render() {
 		return (
-			<div>
-				<h1>Dashboard</h1>
-				{this.renderContent()}
+			<div className="row">
+				<div className="col">
+					<h1>Dashboard</h1>
+					{this.renderContent()}
+				</div>
 			</div>
 		);
 	}

@@ -21,11 +21,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require("./routes/authRoutes")(app);
-require("./routes/api")(app);
-
-// app.get("/", (req, res) => {
-// 	res.send({ hi: "there" });
-// });
+require("./routes/campaigns")(app);
+require("./routes/players")(app);
 
 const port = process.env.SERVERPORT || 5000;
 app.listen(port, () => {

@@ -22,10 +22,12 @@ class Landing extends Component {
 
 	render() {
 		return (
-			<div style={{ textAlign: "center" }}>
-				<h1>DM Helper</h1>
-				<p>Your D&amp;D Dashboard</p>
-				{this.renderContent()}
+			<div className="row">
+				<div className="col">
+					<h1>DM Helper</h1>
+					<p>Your D&amp;D Dashboard</p>
+					{this.renderContent()}
+				</div>
 			</div>
 		);
 	}

@@ -2,7 +2,7 @@ const requireLogin = require("../middleware/requireLogin");
 const pool = require("../database/db");
 
 module.exports = (app) => {
-	app.get("/api/campaigns/", requireLogin, async (req, res) => {
+	app.get("/api/players/", requireLogin, async (req, res) => {
 		try {
 			const campaigns = await pool.query(
 				"SELECT * FROM campaigns WHERE dm_id = $1",
@@ -21,7 +21,7 @@ module.exports = (app) => {
 		}
 	});
 
-	app.post("/api/campaigns/add", requireLogin, async (req, res) => {
+	app.post("/api/players/add", requireLogin, async (req, res) => {
 		try {
 			const campaign = await pool.query(
 				"SELECT * FROM campaigns WHERE dm_id = $1 AND campaign_name = $2",
@@ -45,7 +45,7 @@ module.exports = (app) => {
 		}
 	});
 
-	app.delete("/api/campaigns/delete/:id", requireLogin, async (req, res) => {
+	app.delete("/api/players/delete/:id", requireLogin, async (req, res) => {
 		try {
 			const campaign = await pool.query(
 				"SELECT FROM campaigns WHERE dm_id = $1 AND campaign_id = $2",
