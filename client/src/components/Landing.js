@@ -15,6 +15,9 @@ class Landing extends Component {
 						<li>
 							<Link to="/campaigns">My Campaigns</Link>
 						</li>
+						<li>
+							<Link to="/players">My Players</Link>
+						</li>
 					</ul>
 				);
 		}

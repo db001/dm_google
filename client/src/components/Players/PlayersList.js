@@ -15,7 +15,7 @@ class PlayersList extends Component {
 		try {
 			const response = await axios.delete(`/api/campaigns/delete/${id}`);
 			console.log(response.data);
-			this.props.fetchCampaigns();
+			this.props.fetchPlayers();
 		} catch (error) {
 			console.log(error);
 		}
@@ -33,7 +33,7 @@ class PlayersList extends Component {
 		const myPlayers = this.props.players.map((player) => {
 			return (
 				<Player
-					key={player.player_id}
+					key={player.character_id}
 					data={player}
 					deletePlayer={this.deletePlayer}
 				/>

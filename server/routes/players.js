@@ -22,10 +22,11 @@ module.exports = (app) => {
 	});
 
 	app.post("/api/players/add", requireLogin, async (req, res) => {
+		console.log(req.body);
 		try {
 			const player = await pool.query(
-				"SELECT * FROM player_characters WHERE dm_id = $1 AND character_id = $2",
-				[req.user.dm_id, req.body.character_id]
+				"SELECT * FROM player_characters WHERE dm_id = $1 AND character_name = $2",
+				[req.user.dm_id, req.body.name]
 			);
 
 			if (player.rows.length > 0) {
@@ -33,8 +34,15 @@ module.exports = (app) => {
 			}
 
 			const newPlayer = await pool.query(
-				"INSERT INTO player_characters (dm_id, character_name) VALUES ($1, $2) RETURNING *",
-				[req.user.dm_id, req.body.name]
+				"INSERT INTO player_characters (dm_id, character_name, player_initiative, player_dex, player_armour_class, player_hit_points) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+				[
+					req.user.dm_id,
+					req.body.name,
+					req.body.initiative,
+					req.body.dex,
+					req.body.armourClass,
+					req.body.hitPoints,
+				]
 			);
 
 			res.send(newPlayer.rows[0]);

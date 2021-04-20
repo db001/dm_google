@@ -6,7 +6,9 @@ function Player(props) {
 		<li>
 			<div className="card">
 				<div className="card-content">
-					<span className="card-title">{props.data.player_name}</span>
+					<span className="card-title">
+						{props.data.character_name}
+					</span>
 					<p>{props.data.player_name}</p>
 				</div>
 				<div className="card-action">
@@ -15,7 +17,8 @@ function Player(props) {
 						onClick={() =>
 							props.deleteCampaign(props.data.player_id)
 						}
-						className="red-text">
+						className="red-text"
+					>
 						Delete
 					</button>
 				</div>
