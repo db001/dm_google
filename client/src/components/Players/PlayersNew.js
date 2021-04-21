@@ -10,10 +10,10 @@ class PlayersNew extends Component {
 
 		this.state = {
 			playerName: "",
-			initiative: 0,
-			dex: 0,
-			armourClass: 0,
-			hitPoints: 0,
+			initiative: "",
+			dex: "",
+			armourClass: "",
+			hitPoints: "",
 		};
 	}
 

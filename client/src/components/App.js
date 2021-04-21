@@ -3,13 +3,15 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
-import Header from "./Header";
+import Header from "./Header/Header";
 import Landing from "./Landing";
 import Dashboard from "./Dashboard";
 import CampaignsList from "./Campaigns/CampaignsList";
 import CampaignsNew from "./Campaigns/CampaignsNew";
 import PlayersList from "./Players/PlayersList";
 import PlayersNew from "./Players/PlayersNew";
+
+import "./App.scss";
 
 class App extends Component {
 	componentDidMount() {
@@ -18,28 +20,38 @@ class App extends Component {
 
 	render() {
 		return (
-			<div className="container-fluid">
+			<div>
 				<BrowserRouter>
 					<div>
 						<Header />
-						<Route exact path="/" component={Landing} />
-						<Route exact path="/dashboard" component={Dashboard} />
-						<Route
-							exact
-							path="/campaigns"
-							component={CampaignsList}
-						/>
-						<Route
-							exact
-							path="/campaigns/new"
-							component={CampaignsNew}
-						/>
-						<Route exact path="/players" component={PlayersList} />
-						<Route
-							exact
-							path="/players/new"
-							component={PlayersNew}
-						/>
+						<div className="container-fluid">
+							<Route exact path="/" component={Landing} />
+							<Route
+								exact
+								path="/dashboard"
+								component={Dashboard}
+							/>
+							<Route
+								exact
+								path="/campaigns"
+								component={CampaignsList}
+							/>
+							<Route
+								exact
+								path="/campaigns/new"
+								component={CampaignsNew}
+							/>
+							<Route
+								exact
+								path="/players"
+								component={PlayersList}
+							/>
+							<Route
+								exact
+								path="/players/new"
+								component={PlayersNew}
+							/>
+						</div>
 					</div>
 				</BrowserRouter>
 			</div>

@@ -1,0 +1,38 @@
+html body {
+	color: $ghost-white;
+	font-family: "PT Serif", serif;
+	font-size: 16px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	font-family: "Cormorant Unicase", serif;
+}
+
+.container-fluid {
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 15px;
+	padding-right: 15px;
+	width: 100%;
+}
+
+.container {
+	@extend .container-fluid;
+	max-width: 1200px;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: -15px;
+	margin-left: -15px;
+}

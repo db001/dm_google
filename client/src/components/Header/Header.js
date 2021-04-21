@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import "./Header.scss";
+
 class Header extends Component {
 	renderContent() {
 		switch (this.props.auth) {
@@ -34,12 +36,13 @@ class Header extends Component {
 		const userName = this.props.auth ? this.props.auth.user.user_name : "";
 
 		return (
-			<nav>
+			<nav class="container-fluid">
 				<div className="nav-wrapper">
 					<Link
 						to={this.props.auth ? "/dashboard" : "/"}
 						href="/"
-						className="left brand-logo">
+						className="left brand-logo"
+					>
 						{this.props.auth
 							? `${userName}'s DM Helper`
 							: `DM Helper`}

@@ -13,7 +13,7 @@ class PlayersList extends Component {
 
 	deletePlayer = async (id) => {
 		try {
-			const response = await axios.delete(`/api/campaigns/delete/${id}`);
+			const response = await axios.delete(`/api/players/delete/${id}`);
 			console.log(response.data);
 			this.props.fetchPlayers();
 		} catch (error) {
