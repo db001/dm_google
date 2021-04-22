@@ -1,6 +1,6 @@
 html body {
 	color: $ghost-white;
-	font-family: "PT Serif", serif;
+	font-family: "Montserrat", sans-serif;
 	font-size: 16px;
 }
 
@@ -8,6 +8,7 @@ html body {
 *::before,
 *::after {
 	box-sizing: border-box;
+	font-family: "Montserrat", sans-serif;
 }
 
 h1,
@@ -35,4 +36,8 @@ h4 {
 	flex-wrap: wrap;
 	margin-right: -15px;
 	margin-left: -15px;
+}
+
+.card {
+	background-color: $gunmetal;
 }

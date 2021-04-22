@@ -12,12 +12,12 @@ class Dashboard extends Component {
 				return;
 			default:
 				return (
-					<ul className="collection">
-						<li className="collection-item">
-							<Link to="/campaigns">Campaigns</Link>
+					<ul>
+						<li>
+							<Link to="/campaigns">My Campaigns</Link>
 						</li>
-						<li className="collection-item">
-							<Link to="/players">Players</Link>
+						<li>
+							<Link to="/players">My Players</Link>
 						</li>
 					</ul>
 				);

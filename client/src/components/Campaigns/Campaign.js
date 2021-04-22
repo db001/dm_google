@@ -19,7 +19,7 @@ function Campaign(props) {
 						onClick={() =>
 							props.deleteCampaign(props.data.campaign_id)
 						}
-						className="red-text"
+						className="btn btn-warning"
 					>
 						Delete
 					</button>

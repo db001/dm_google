@@ -10,6 +10,7 @@ class CampaignsNew extends Component {
 
 		this.state = {
 			name: "",
+			error: false,
 		};
 	}
 
@@ -17,11 +18,19 @@ class CampaignsNew extends Component {
 		this.setState({
 			name: value,
 			redirect: false,
+			error: false,
 		});
 	};
 
 	onSubmitForm = async (e) => {
 		e.preventDefault();
+		if (!this.state.name) {
+			this.setState({
+				error: true,
+			});
+			console.log(this.state.error);
+			return;
+		}
 		const data = {
 			name: this.state.name,
 		};
@@ -42,6 +51,14 @@ class CampaignsNew extends Component {
 			}
 		} catch (err) {
 			console.error(err.message);
+		}
+	};
+
+	showError = () => {
+		if (this.state.error) {
+			return (
+				<span className="error-msg">Please enter a campaign name</span>
+			);
 		}
 	};
 
@@ -66,7 +83,14 @@ class CampaignsNew extends Component {
 										this.updateName(e.target.value)
 									}
 								/>
-								<button type="submit">Add</button>
+								{this.state.error && (
+									<p className="msg msg-error">
+										Please enter a campaign name
+									</p>
+								)}
+								<button className="btn" type="submit">
+									Add
+								</button>
 							</form>
 						</div>
 					</div>

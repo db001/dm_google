@@ -36,20 +36,20 @@ class Header extends Component {
 		const userName = this.props.auth ? this.props.auth.user.user_name : "";
 
 		return (
-			<nav class="container-fluid">
+			<nav className="container-fluid">
 				<div className="nav-wrapper">
 					<Link
 						to={this.props.auth ? "/dashboard" : "/"}
 						href="/"
-						className="left brand-logo"
+						className="logo"
 					>
-						{this.props.auth
-							? `${userName}'s DM Helper`
-							: `DM Helper`}
+						<h3>
+							{this.props.auth
+								? `${userName}'s DM Helper`
+								: `DM Helper`}
+						</h3>
 					</Link>
-					<ul id="nav-mobile" className="right">
-						{this.renderContent()}
-					</ul>
+					<ul id="nav-mobile">{this.renderContent()}</ul>
 				</div>
 			</nav>
 		);
