@@ -23,14 +23,20 @@ input[type="tel"]:not(.browser-default),
 input[type="number"]:not(.browser-default),
 input[type="search"]:not(.browser-default),
 textarea.materialize-textarea {
-	&[type="text"] {
+	&[type="text"],
+	&[type="number"] {
 		color: $ghost-white;
 		border-bottom: 1px solid $ghost-white;
+		box-shadow: 0 1px 0 0 $ghost-white;
 
 		&:focus {
 			border-bottom: 1px solid $medium-carmine;
 			box-shadow: 0 1px 0 0 $medium-carmine;
 		}
+	}
+
+	&.valid {
+		box-shadow: 0 1px 0 0 $cadet-blue;
 	}
 }
 

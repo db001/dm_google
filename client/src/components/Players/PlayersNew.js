@@ -142,7 +142,9 @@ class PlayersNew extends Component {
 										onChange={this.handleInputChange}
 									/>
 								</div>
-								<button type="submit">Add</button>
+								<button className="btn" type="submit">
+									Add
+								</button>
 							</form>
 						</div>
 					</div>

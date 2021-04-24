@@ -39,8 +39,7 @@ function Player(props) {
 						onClick={() =>
 							props.deletePlayer(props.data.character_id)
 						}
-						className="red-text"
-					>
+						className="btn btn-warning">
 						Delete
 					</button>
 				</div>

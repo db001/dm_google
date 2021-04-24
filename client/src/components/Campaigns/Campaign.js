@@ -12,15 +12,14 @@ function Campaign(props) {
 					<p>{props.data.campaign_name}</p>
 				</div>
 				<div className="card-action">
-					<Link to="/campaigns/{props.campaign_id}">
+					<Link to={`/campaigns/${props.data.campaign_id}`}>
 						Go to campaign
 					</Link>
 					<button
 						onClick={() =>
 							props.deleteCampaign(props.data.campaign_id)
 						}
-						className="btn btn-warning"
-					>
+						className="btn btn-warning">
 						Delete
 					</button>
 				</div>
