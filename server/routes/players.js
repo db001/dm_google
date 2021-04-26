@@ -22,7 +22,6 @@ module.exports = (app) => {
 	});
 
 	app.post("/api/players/add", requireLogin, async (req, res) => {
-		console.log(req.body);
 		try {
 			const player = await pool.query(
 				"SELECT * FROM player_characters WHERE dm_id = $1 AND character_name = $2",
@@ -57,7 +56,7 @@ module.exports = (app) => {
 		try {
 			const player = await pool.query(
 				"SELECT FROM player_characters WHERE dm_id = $1 AND character_id = $2",
-				[req.user.dm_id, req.params.character_id]
+				[req.user.dm_id, req.params.id]
 			);
 
 			if (player.rows.length === 0) {
@@ -66,7 +65,7 @@ module.exports = (app) => {
 
 			const deletedPlayer = await pool.query(
 				"DELETE FROM player_characters WHERE dm_id = $1 AND character_id = $2 RETURNING *",
-				[req.user.dm_id, req.params.character_id]
+				[req.user.dm_id, req.params.id]
 			);
 
 			res.json(deletedPlayer.rows[0]);
