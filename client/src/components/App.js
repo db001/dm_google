@@ -8,6 +8,7 @@ import Landing from "./Landing";
 import Dashboard from "./Dashboard";
 import CampaignsList from "./Campaigns/CampaignsList";
 import CampaignsNew from "./Campaigns/CampaignsNew";
+import CampaignDetails from "./Campaigns/CampaignDetails";
 import PlayersList from "./Players/PlayersList";
 import PlayersNew from "./Players/PlayersNew";
 
@@ -40,6 +41,10 @@ class App extends Component {
 								exact
 								path="/campaigns/new"
 								component={CampaignsNew}
+							/>
+							<Route
+								path="/campaigns/:id"
+								component={CampaignDetails}
 							/>
 							<Route
 								exact

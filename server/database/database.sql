@@ -29,6 +29,11 @@ CREATE TABLE player_characters(
   PRIMARY KEY (character_id)
 );
 
+CREATE TABLE campaign_players(
+  campaign_id UUID,
+  character_id UUID
+)
+
 CREATE TABLE dm_players(
   dm_id UUID,
   character_id UUID,

@@ -67,4 +67,22 @@ module.exports = (app) => {
 			res.send(err.message);
 		}
 	});
+
+	app.get("/api/campaigns/fetch/:id", requireLogin, async (req, res) => {
+		try {
+			const campaign = await pool.query(
+				"SELECT * FROM campaigns WHERE dm_id = $1 AND campaign_id = $2",
+				[req.user.dm_id, req.params.id]
+			);
+
+			if (campaign.rows.length === 0) {
+				return res.status(401).send("This campaign is not yours");
+			}
+
+			res.json(campaign.rows[0]);
+		} catch (error) {
+			console.error(error.message);
+			res.send(error.message);
+		}
+	});
 };

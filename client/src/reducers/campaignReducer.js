@@ -1,6 +1,6 @@
-import { GET_CAMPAIGNS } from "../actions/types";
+import { GET_CAMPAIGNS, GET_SINGLE_CAMPAIGN } from "../actions/types";
 
-const campaignReducer = (state = null, action) => {
+export const campaignReducer = (state = null, action) => {
 	switch (action.type) {
 		case GET_CAMPAIGNS:
 			return isEmpty(action.payload) ? false : action.payload;
@@ -10,7 +10,15 @@ const campaignReducer = (state = null, action) => {
 	}
 };
 
-export default campaignReducer;
+export const singleCampaignReducer = (state = null, action) => {
+	switch (action.type) {
+		case GET_SINGLE_CAMPAIGN:
+			return isEmpty(action.payload) ? false : action.payload;
+
+		default:
+			return state;
+	}
+};
 
 function isEmpty(obj) {
 	for (let key in obj) {
