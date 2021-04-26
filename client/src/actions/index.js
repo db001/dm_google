@@ -2,7 +2,7 @@ import axios from "axios";
 import {
 	FETCH_USER,
 	GET_CAMPAIGNS,
-	GET_SINGLE_CAMPAIGN,
+	FETCH_SINGLE_CAMPAIGN,
 	GET_PLAYERS,
 } from "./types";
 
@@ -23,7 +23,7 @@ export const fetchCampaigns = () => async (dispatch) => {
 
 export const fetchSingleCampaign = (id) => async (dispatch) => {
 	const res = await axios.get("/api/campaigns/fetch/" + id);
-	dispatch({ type: GET_SINGLE_CAMPAIGN, payload: res.data });
+	dispatch({ type: FETCH_SINGLE_CAMPAIGN, payload: res.data });
 };
 
 export const fetchPlayers = () => async (dispatch) => {

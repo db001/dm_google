@@ -1,4 +1,4 @@
-import { GET_CAMPAIGNS, GET_SINGLE_CAMPAIGN } from "../actions/types";
+import { GET_CAMPAIGNS, FETCH_SINGLE_CAMPAIGN } from "../actions/types";
 
 export const campaignReducer = (state = null, action) => {
 	switch (action.type) {
@@ -12,7 +12,7 @@ export const campaignReducer = (state = null, action) => {
 
 export const singleCampaignReducer = (state = null, action) => {
 	switch (action.type) {
-		case GET_SINGLE_CAMPAIGN:
+		case FETCH_SINGLE_CAMPAIGN:
 			return isEmpty(action.payload) ? false : action.payload;
 
 		default:

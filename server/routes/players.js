@@ -74,4 +74,36 @@ module.exports = (app) => {
 			res.send(err.message);
 		}
 	});
+
+	app.get("/api/players/campaign/:id", requireLogin, async (req, res) => {
+		try {
+			const players = await pool.query(
+				"SELECT * FROM campaign_players WHERE dm_id = $1 AND campaign_id = $2 RETURNING *",
+				[req.user.dm_id, req.params.id]
+			);
+
+			res.json(players.rows);
+		} catch (error) {
+			console.error(err.message);
+			res.send(err.message);
+		}
+	});
+
+	app.post(
+		"/api/players/campaign/add/:id",
+		requireLogin,
+		async (res, req) => {
+			try {
+				const addPlayer = await pool.query(
+					"INSERT INTO campaign_players (campaign_id, character_id) VALUES ($1, $2) RETURNING *",
+					[req.params.id, req.body.player_id]
+				);
+
+				res.send(addPlayer.rows[0]);
+			} catch (error) {
+				console.error(err.message);
+				res.send(err.message);
+			}
+		}
+	);
 };
