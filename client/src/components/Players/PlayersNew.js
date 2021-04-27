@@ -43,8 +43,6 @@ class PlayersNew extends Component {
 			armourClass: Number(this.state.armourClass),
 			hitPoints: Number(this.state.hitPoints),
 		};
-
-		console.log(data);
 		try {
 			const response = await axios({
 				method: "POST",

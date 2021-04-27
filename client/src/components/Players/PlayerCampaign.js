@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as actions from "../../actions";
 import { Link } from "react-router-dom";
 
 import "./Player.scss";
@@ -35,18 +37,39 @@ function Player(props) {
 					<Link to={`/player/${props.data.character_id}`}>
 						Go to player
 					</Link>
-					<button
-						onClick={() =>
-							props.deletePlayer(props.data.character_id)
-						}
-						className="btn btn-warning"
-					>
-						Delete
-					</button>
+					{props.inCampaign ? (
+						<button
+							onClick={() =>
+								props.removePlayer(
+									props.data.character_id,
+									props.campaign_id
+								)
+							}
+							className="btn btn-warning"
+						>
+							Remove from campaign
+						</button>
+					) : (
+						<button
+							onClick={() =>
+								props.addPlayer(
+									props.data.character_id,
+									props.campaign_id
+								)
+							}
+							className="btn"
+						>
+							Add to campaign
+						</button>
+					)}
 				</div>
 			</div>
 		</li>
 	);
 }
 
-export default Player;
+function mapStateToProps({ singleCampaign, players }) {
+	return { singleCampaign, players };
+}
+
+export default connect(mapStateToProps, actions)(Player);

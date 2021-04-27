@@ -69,7 +69,6 @@ module.exports = (app) => {
 	});
 
 	app.get("/api/campaigns/fetch/:id", requireLogin, async (req, res) => {
-		console.log(req.params);
 		try {
 			const campaign = await pool.query(
 				"SELECT * FROM campaigns WHERE dm_id = $1 AND campaign_id = $2",

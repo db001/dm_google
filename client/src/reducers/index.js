@@ -1,11 +1,12 @@
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
 import { campaignReducer, singleCampaignReducer } from "./campaignReducer";
-import playersReducers from "./playersReducer";
+import { playersReducer, campaignPlayersReducer } from "./playersReducer";
 
 export default combineReducers({
 	auth: authReducer,
 	campaigns: campaignReducer,
 	singleCampaign: singleCampaignReducer,
-	players: playersReducers,
+	players: playersReducer,
+	campaignPlayers: campaignPlayersReducer,
 });

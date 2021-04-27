@@ -4,6 +4,7 @@ import {
 	GET_CAMPAIGNS,
 	FETCH_SINGLE_CAMPAIGN,
 	GET_PLAYERS,
+	FETCH_CAMPAIGN_PLAYERS,
 } from "./types";
 
 export const fetchUser = () => async (dispatch) => {
@@ -29,4 +30,9 @@ export const fetchSingleCampaign = (id) => async (dispatch) => {
 export const fetchPlayers = () => async (dispatch) => {
 	const res = await axios.get("/api/players");
 	dispatch({ type: GET_PLAYERS, payload: res.data });
+};
+
+export const fetchCampaignPlayers = (id) => async (dispatch) => {
+	const res = await axios.get("/api/players/campaign/" + id);
+	dispatch({ type: FETCH_CAMPAIGN_PLAYERS, payload: res.data });
 };
