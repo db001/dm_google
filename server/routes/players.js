@@ -4,10 +4,7 @@ const pool = require("../database/db");
 module.exports = (app) => {
 	app.get("/api/players/", requireLogin, async (req, res) => {
 		try {
-			const players = await pool.query(
-				"SELECT * FROM player_characters WHERE dm_id = $1",
-				[req.user.dm_id]
-			);
+			const players = await pool.query("SELECT * FROM player_characters WHERE dm_id = $1", [req.user.dm_id]);
 
 			if (players.rows.length == 0) {
 				return res.send(null);
@@ -54,10 +51,10 @@ module.exports = (app) => {
 
 	app.delete("/api/players/delete/:id", requireLogin, async (req, res) => {
 		try {
-			const player = await pool.query(
-				"SELECT FROM player_characters WHERE dm_id = $1 AND character_id = $2",
-				[req.user.dm_id, req.params.id]
-			);
+			const player = await pool.query("SELECT FROM player_characters WHERE dm_id = $1 AND character_id = $2", [
+				req.user.dm_id,
+				req.params.id,
+			]);
 
 			if (player.rows.length === 0) {
 				return res.status(401).send("This player is not yours");
@@ -76,61 +73,54 @@ module.exports = (app) => {
 	});
 
 	app.get("/api/players/campaign/:id", requireLogin, async (req, res) => {
+		console.log(req.params.id);
 		try {
-			const players = await pool.query(
-				"SELECT * FROM campaign_players WHERE dm_id = $1 AND campaign_id = $2 RETURNING *",
-				[req.user.dm_id, req.params.id]
-			);
+			const players = await pool.query("SELECT * FROM campaign_players WHERE campaign_id = $1 AND dm_id = $2", [
+				req.params.id,
+				req.user.dm_id,
+			]);
 
 			res.json(players.rows);
 		} catch (error) {
+			console.error(error.message);
+			res.send(error.message);
+		}
+	});
+
+	app.post("/api/players/campaign/add/:id", requireLogin, async (req, res) => {
+		try {
+			const addPlayer = await pool.query(
+				"INSERT INTO campaign_players (campaign_id, character_id, dm_id) VALUES ($1, $2, $3) RETURNING *",
+				[req.body.campaign_id, req.params.id, req.user.dm_id]
+			);
+
+			res.send(addPlayer.rows[0]);
+		} catch (error) {
+			console.error(error.message);
+			res.send(error.message);
+		}
+	});
+
+	app.delete("/api/players/campaign/remove/:id", requireLogin, async (req, res) => {
+		try {
+			const player = await pool.query(
+				"SELECT FROM campaign_players WHERE dm_id = $1 AND campaign_id = $2 AND character_id = $3",
+				[req.user.dm_id, req.body.campaign_id, req.params.id]
+			);
+
+			if (player.rows.length === 0) {
+				return res.status(401).send("This player is not yours");
+			}
+
+			const deletedPlayer = await pool.query(
+				"DELETE FROM player_characters WHERE dm_id = $1 AND character_id = $2 RETURNING *",
+				[req.user.dm_id, req.params.id]
+			);
+
+			res.json(deletedPlayer.rows[0]);
+		} catch (err) {
 			console.error(err.message);
 			res.send(err.message);
 		}
 	});
-
-	app.post(
-		"/api/players/campaign/add/:id",
-		requireLogin,
-		async (req, res) => {
-			try {
-				const addPlayer = await pool.query(
-					"INSERT INTO campaign_players (campaign_id, character_id) VALUES ($1, $2) RETURNING *",
-					[req.body.campaign_id, req.params.id]
-				);
-
-				res.send(addPlayer.rows[0]);
-			} catch (error) {
-				console.error(error.message);
-				res.send(error.message);
-			}
-		}
-	);
-
-	app.delete(
-		"/api/players/campaign/remove/:id",
-		requireLogin,
-		async (req, res) => {
-			try {
-				const player = await pool.query(
-					"SELECT FROM campaign_players WHERE dm_id = $1 AND campaign_id = $2 AND character_id = $3",
-					[req.user.dm_id, req.body.campaign_id, req.params.id]
-				);
-
-				if (player.rows.length === 0) {
-					return res.status(401).send("This player is not yours");
-				}
-
-				const deletedPlayer = await pool.query(
-					"DELETE FROM player_characters WHERE dm_id = $1 AND character_id = $2 RETURNING *",
-					[req.user.dm_id, req.params.id]
-				);
-
-				res.json(deletedPlayer.rows[0]);
-			} catch (err) {
-				console.error(err.message);
-				res.send(err.message);
-			}
-		}
-	);
 };

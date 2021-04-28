@@ -10,9 +10,7 @@ function Player(props) {
 		<li>
 			<div className="card">
 				<div className="card-content">
-					<span className="card-title">
-						{props.data.character_name}
-					</span>
+					<span className="card-title">{props.data.character_name}</span>
 					<p>{props.data.player_name}</p>
 					<ul className="player_card-stats">
 						<li>
@@ -34,29 +32,17 @@ function Player(props) {
 					</ul>
 				</div>
 				<div className="card-action">
-					<Link to={`/player/${props.data.character_id}`}>
-						Go to player
-					</Link>
+					<Link to={`/player/${props.data.character_id}`}>Go to player</Link>
 					{props.inCampaign ? (
 						<button
-							onClick={() =>
-								props.removePlayer(
-									props.data.character_id,
-									props.campaign_id
-								)
-							}
+							onClick={() => props.removePlayer(props.data.character_id, props.campaign_id)}
 							className="btn btn-warning"
 						>
 							Remove from campaign
 						</button>
 					) : (
 						<button
-							onClick={() =>
-								props.addPlayer(
-									props.data.character_id,
-									props.campaign_id
-								)
-							}
+							onClick={() => props.addPlayer(props.data.character_id, props.campaign_id)}
 							className="btn"
 						>
 							Add to campaign

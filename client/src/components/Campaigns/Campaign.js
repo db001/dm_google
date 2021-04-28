@@ -6,24 +6,14 @@ function Campaign(props) {
 		<li>
 			<div className="card">
 				<div className="card-content">
-					<span className="card-title">
-						{props.data.campaign_name}
-					</span>
+					<span className="card-title">{props.data.campaign_name}</span>
 					<p>{props.data.campaign_name}</p>
 				</div>
 				<div className="card-action">
-					<Link
-						to={`/campaigns/${props.data.campaign_id}`}
-						id={props.data.campaign_id}
-					>
+					<Link to={`/campaigns/details/${props.data.campaign_id}`} id={props.data.campaign_id}>
 						Go to campaign
 					</Link>
-					<button
-						onClick={() =>
-							props.deleteCampaign(props.data.campaign_id)
-						}
-						className="btn btn-warning"
-					>
+					<button onClick={() => props.deleteCampaign(props.data.campaign_id)} className="btn btn-warning">
 						Delete
 					</button>
 				</div>

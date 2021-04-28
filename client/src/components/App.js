@@ -27,35 +27,12 @@ class App extends Component {
 						<Header />
 						<div className="container-fluid">
 							<Route exact path="/" component={Landing} />
-							<Route
-								exact
-								path="/dashboard"
-								component={Dashboard}
-							/>
-							<Route
-								exact
-								path="/campaigns"
-								component={CampaignsList}
-							/>
-							<Route
-								exact
-								path="/campaigns/new"
-								component={CampaignsNew}
-							/>
-							<Route
-								path="/campaigns/:id"
-								component={CampaignDetails}
-							/>
-							<Route
-								exact
-								path="/players"
-								component={PlayersList}
-							/>
-							<Route
-								exact
-								path="/players/new"
-								component={PlayersNew}
-							/>
+							<Route exact path="/dashboard" component={Dashboard} />
+							<Route exact path="/campaigns" component={CampaignsList} />
+							<Route exact path="/campaigns/new" component={CampaignsNew} />
+							<Route path="/campaigns/details/:id" component={CampaignDetails} />
+							<Route exact path="/players" component={PlayersList} />
+							<Route exact path="/players/new" component={PlayersNew} />
 						</div>
 					</div>
 				</BrowserRouter>

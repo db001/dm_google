@@ -30,9 +30,14 @@ CREATE TABLE player_characters(
 );
 
 CREATE TABLE campaign_players(
+  id SERIAL PRIMARY KEY,
   campaign_id UUID,
-  character_id UUID
-)
+  character_id UUID,
+  dm_id UUID,
+  FOREIGN KEY (dm_id) REFERENCES dungeon_master(dm_id),
+  FOREIGN KEY (campaign_id) REFERENCES player_characters(character_id),
+  FOREIGN KEY (campaign_id) REFERENCES campaigns(campaign_id)
+);
 
 CREATE TABLE dm_players(
   dm_id UUID,
@@ -47,7 +52,9 @@ CREATE TABLE npcs(
   npc_dex INT NOT NULL,
   npc_armour_class INT NOT NULL,
   npc_hit_points INT NOT NULL,
-  PRIMARY KEY (npc_id)
+  dm_id UUID,
+  PRIMARY KEY (npc_id),
+  FOREIGN KEY (dm_id) REFERENCES dungeon_master(dm_id),
 );
 
 CREATE TABLE dm_npcs (
