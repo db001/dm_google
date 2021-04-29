@@ -42,7 +42,7 @@ Optional
 
 #### To run the backend
 
--   On the first install use `npm run con-dev`. The will create a fresh database and start the server. **WARNING If using this command after the first install, any data in the `dungeon` database will be deleted. _USE WITH CARE_**
+-   On the first install use `npm run con-dev`. The will create a fresh database and start the server. **WARNING If using this command after the first install, any data in the `dmgoogle` database will be deleted. _USE WITH CARE_**
 -   To start the server use `npm run server`
 -   The backend server will be running on `http://localhost:5000`
 
